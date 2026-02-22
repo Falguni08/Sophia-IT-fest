@@ -163,6 +163,71 @@ button {
   100% { transform: scale(1); }
 }
 
+/* ===== MOBILE RESPONSIVE FIX ===== */
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 380px;
+}
+
+/* prevent iphone zoom on input */
+input, button {
+    font-size: 16px;
+}
+
+/* small phones */
+@media (max-width: 380px) {
+    .container {
+        padding: 26px 18px;
+        border-radius: 18px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .sub {
+        font-size: 12px;
+    }
+
+    input {
+        padding: 11px 14px;
+    }
+
+    button {
+        padding: 12px;
+    }
+}
+
+/* very small screens (old android / iphone se) */
+@media (max-width: 320px) {
+    h1 {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        padding: 22px 14px;
+    }
+}
+
+/* large phones & tablets */
+@media (min-width: 500px) {
+    .container {
+        max-width: 420px;
+    }
+}
+
+/* iPhone notch safe area */
+body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
 </style>
 </head>
 <body>
@@ -288,6 +353,12 @@ function startMatrixRain() {
         }
     }, 33);
 }
+
+window.addEventListener("resize", () => {
+    const canvas = document.getElementById("matrixCanvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
 
 function stopMatrixRain(){
     document.getElementById("matrixCanvas").style.display="none";
